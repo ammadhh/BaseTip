@@ -9,12 +9,12 @@ import {
   WalletAdvancedTokenHoldings,
   WalletAdvancedTransactionActions,
   WalletAdvancedWalletActions,
-  useWalletContext,
 } from "@coinbase/onchainkit/wallet"
 import { Avatar, Name } from "@coinbase/onchainkit/identity"
+import { useAccount as useWagmiAccount } from "wagmi"
 
 export function OnchainWalletDemo() {
-  const { isConnected, address, chain } = useWalletContext()
+  const { isConnected, address, chain } = useWagmiAccount()
   const [isExpanded, setIsExpanded] = useState(false)
 
   // Log connection status for debugging

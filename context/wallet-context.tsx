@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext, useContext, type ReactNode } from "react"
-import { useWalletContext as useOnchainWalletContext } from "@coinbase/onchainkit/wallet"
+import { useAccount as useWagmiAccount } from "wagmi"
 
 interface WalletContextType {
   isConnected: boolean
@@ -14,7 +14,7 @@ const WalletContext = createContext<WalletContextType>({
 })
 
 export function WalletContextProvider({ children }: { children: ReactNode }) {
-  const { isConnected, address } = useOnchainWalletContext()
+  const { isConnected, address } = useWagmiAccount()
 
   return (
     <WalletContext.Provider

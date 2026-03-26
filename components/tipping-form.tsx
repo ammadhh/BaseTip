@@ -12,7 +12,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import { useAccount } from "@/hooks/use-account"
 import { OnchainTransaction } from "@/components/onchain-transaction"
-import { useWalletContext } from "@coinbase/onchainkit/wallet"
+import { useAccount as useWagmiAccount } from "wagmi"
 
 const formSchema = z.object({
   recipient: z.string().min(42, {
@@ -29,7 +29,7 @@ const formSchema = z.object({
 export function TippingForm() {
   const { toast } = useToast()
   const { address } = useAccount()
-  const { isConnected } = useWalletContext()
+  const { isConnected } = useWagmiAccount()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showTransaction, setShowTransaction] = useState(false)
 
