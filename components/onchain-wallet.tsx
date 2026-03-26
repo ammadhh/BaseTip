@@ -8,15 +8,15 @@ import {
   WalletAdvancedTokenHoldings,
   WalletAdvancedTransactionActions,
   WalletAdvancedWalletActions,
-  useWalletContext,
 } from "@coinbase/onchainkit/wallet"
 import { Avatar, Name, Identity, Address } from "@coinbase/onchainkit/identity"
 import { color } from "@coinbase/onchainkit/theme"
 import { useState } from "react"
+import { useAccount as useWagmiAccount } from "wagmi"
 
 export function OnchainWallet() {
   const [isExpanded, setIsExpanded] = useState(false)
-  const { isConnected } = useWalletContext()
+  const { isConnected } = useWagmiAccount()
 
   return (
     <div className="fixed bottom-4 right-4 z-50">

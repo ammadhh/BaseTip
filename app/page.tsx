@@ -3,7 +3,10 @@ import { TippingDashboard } from "@/components/tipping-dashboard"
 import { TwitchStream } from "@/components/twitch-stream"
 import { NFTRewardsBanner } from "@/components/nft-rewards-banner"
 import { NetworkStatus } from "@/components/network-status"
+import { TopTippers } from "@/components/top-tippers"
+import { NFTShowcase } from "@/components/nft-showcase"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { WalletConnect } from "@/components/wallet-connect"
@@ -133,9 +136,12 @@ export default function HomePage() {
         <section className="w-full py-6 md:py-12">
           <div className="container px-4 md:px-6">
             <Tabs defaultValue="streamers" className="w-full">
-              <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
+              <TabsList className="grid w-full max-w-3xl mx-auto grid-cols-2 md:grid-cols-5 mb-8">
                 <TabsTrigger value="streamers">Twitch Streamers</TabsTrigger>
                 <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
+                <TabsTrigger value="leaderboard">Leaderboard</TabsTrigger>
+                <TabsTrigger value="rewards">My Rewards</TabsTrigger>
+                <TabsTrigger value="about">About</TabsTrigger>
               </TabsList>
               <TabsContent value="streamers">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -185,6 +191,41 @@ export default function HomePage() {
               </TabsContent>
               <TabsContent value="dashboard">
                 <TippingDashboard />
+              </TabsContent>
+              <TabsContent value="leaderboard">
+                <div className="max-w-2xl mx-auto">
+                  <TopTippers />
+                </div>
+              </TabsContent>
+              <TabsContent value="rewards">
+                <div className="max-w-4xl mx-auto">
+                  <NFTShowcase />
+                </div>
+              </TabsContent>
+              <TabsContent value="about">
+                <div className="max-w-3xl mx-auto">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>About BaseTip</CardTitle>
+                      <CardDescription>Social tipping on the Base network</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <p>
+                        BaseTip is a decentralized platform that allows viewers to easily send ETH tips to their favorite Twitch streamers and creators on the Base Sepolia testnet.
+                      </p>
+                      <p>
+                        Our mission is to foster a more direct relationship between creators and their communities by utilizing low-cost, fast transactions on Base.
+                      </p>
+                      <h3 className="font-semibold mt-4 text-lg">How It Works:</h3>
+                      <ol className="list-decimal pl-5 space-y-2">
+                        <li>Connect your wallet (MetaMask or Coinbase Wallet) to the Base Sepolia testnet.</li>
+                        <li>Browse popular streamers or watch the embedded Twitch streams.</li>
+                        <li>Send a tip directly to the streamer's wallet using the Tipping Dashboard or Twitch integration.</li>
+                        <li>Your tip will appear on the leaderboard, and top tippers receive exclusive NFT badges!</li>
+                      </ol>
+                    </CardContent>
+                  </Card>
+                </div>
               </TabsContent>
             </Tabs>
           </div>
